@@ -31,16 +31,16 @@ const Navbar = () => {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-6">
             <button
+              onClick={() => navigate("/")}
+              className="text-foreground hover:text-primary transition-colors font-medium"
+            >
+              Home
+            </button>
+            <button
               onClick={() => scrollToSection("ticket-checker")}
               className="text-foreground hover:text-primary transition-colors font-medium"
             >
-              Check Availability
-            </button>
-            <button
-              onClick={() => scrollToSection("waitlist-predictor")}
-              className="text-foreground hover:text-primary transition-colors font-medium"
-            >
-              Predict Waitlist
+              Services
             </button>
             <button
               onClick={() => navigate("/track-pnr")}
@@ -49,10 +49,16 @@ const Navbar = () => {
               Track PNR
             </button>
             <button
-              onClick={() => scrollToSection("features")}
+              onClick={() => navigate("/about")}
               className="text-foreground hover:text-primary transition-colors font-medium"
             >
-              Features
+              About
+            </button>
+            <button
+              onClick={() => navigate("/contact")}
+              className="text-foreground hover:text-primary transition-colors font-medium"
+            >
+              Contact
             </button>
             <Button 
               onClick={() => scrollToSection("ticket-checker")}
@@ -75,28 +81,34 @@ const Navbar = () => {
         {isOpen && (
           <div className="md:hidden py-4 space-y-3 border-t border-border">
             <button
+              onClick={() => { navigate("/"); setIsOpen(false); }}
+              className="block w-full text-left px-4 py-2 text-foreground hover:bg-muted rounded-md transition-colors"
+            >
+              Home
+            </button>
+            <button
               onClick={() => scrollToSection("ticket-checker")}
               className="block w-full text-left px-4 py-2 text-foreground hover:bg-muted rounded-md transition-colors"
             >
-              Check Availability
+              Services
             </button>
             <button
-              onClick={() => scrollToSection("waitlist-predictor")}
-              className="block w-full text-left px-4 py-2 text-foreground hover:bg-muted rounded-md transition-colors"
-            >
-              Predict Waitlist
-            </button>
-            <button
-              onClick={() => navigate("/track-pnr")}
+              onClick={() => { navigate("/track-pnr"); setIsOpen(false); }}
               className="block w-full text-left px-4 py-2 text-foreground hover:bg-muted rounded-md transition-colors"
             >
               Track PNR
             </button>
             <button
-              onClick={() => scrollToSection("features")}
+              onClick={() => { navigate("/about"); setIsOpen(false); }}
               className="block w-full text-left px-4 py-2 text-foreground hover:bg-muted rounded-md transition-colors"
             >
-              Features
+              About
+            </button>
+            <button
+              onClick={() => { navigate("/contact"); setIsOpen(false); }}
+              className="block w-full text-left px-4 py-2 text-foreground hover:bg-muted rounded-md transition-colors"
+            >
+              Contact
             </button>
             <div className="px-4 pt-2">
               <Button 

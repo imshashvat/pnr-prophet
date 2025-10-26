@@ -20,9 +20,9 @@ const Hero = () => {
         <img 
           src={heroTrain} 
           alt="Modern Indian Railway Train" 
-          className="w-full h-full object-cover brightness-50"
+          className="w-full h-full object-cover brightness-75"
         />
-        <div className="absolute inset-0 bg-gradient-hero opacity-80" />
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/70 to-transparent" />
       </div>
 
       {/* Animated Background Elements */}
