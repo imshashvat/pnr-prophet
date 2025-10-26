@@ -69,8 +69,7 @@ const Hero = () => {
             <Button 
               size="lg" 
               onClick={() => navigate("/track-pnr")}
-              variant="outline"
-              className="border-2 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/20 backdrop-blur-sm px-8 py-6 text-lg font-semibold"
+              className="bg-primary hover:bg-primary-light text-primary-foreground border-2 border-primary-light px-8 py-6 text-lg font-semibold shadow-lg hover:shadow-glow transition-all"
             >
               <MapPin className="w-5 h-5 mr-2" />
               Track PNR
