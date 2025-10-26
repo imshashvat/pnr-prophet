@@ -70,19 +70,19 @@ const Hero = () => {
             </Button>
           </div>
 
-          {/* Stats */}
-          <div className="grid grid-cols-3 gap-8 pt-12 max-w-2xl mx-auto">
-            <div className="space-y-2 p-4 bg-card/20 backdrop-blur-sm rounded-lg border border-primary-foreground/20">
-              <div className="text-3xl md:text-4xl font-bold text-secondary drop-shadow-lg">95%+</div>
-              <div className="text-sm text-primary-foreground font-medium">Accuracy Rate</div>
+          {/* Stats - Enhanced Visibility */}
+          <div className="grid grid-cols-3 gap-4 md:gap-8 pt-12 max-w-3xl mx-auto">
+            <div className="space-y-2 p-4 md:p-6 bg-card/40 backdrop-blur-md rounded-xl border-2 border-secondary/40 shadow-lg hover:shadow-glow transition-all duration-300 hover:scale-105">
+              <div className="text-4xl md:text-5xl font-extrabold bg-gradient-purple bg-clip-text text-transparent drop-shadow-2xl">95%+</div>
+              <div className="text-xs md:text-sm text-primary-foreground font-semibold">Accuracy Rate</div>
             </div>
-            <div className="space-y-2 p-4 bg-card/20 backdrop-blur-sm rounded-lg border border-primary-foreground/20">
-              <div className="text-3xl md:text-4xl font-bold text-secondary drop-shadow-lg">2M+</div>
-              <div className="text-sm text-primary-foreground font-medium">Predictions Made</div>
+            <div className="space-y-2 p-4 md:p-6 bg-card/40 backdrop-blur-md rounded-xl border-2 border-secondary/40 shadow-lg hover:shadow-glow transition-all duration-300 hover:scale-105">
+              <div className="text-4xl md:text-5xl font-extrabold bg-gradient-purple bg-clip-text text-transparent drop-shadow-2xl">2M+</div>
+              <div className="text-xs md:text-sm text-primary-foreground font-semibold">Predictions Made</div>
             </div>
-            <div className="space-y-2 p-4 bg-card/20 backdrop-blur-sm rounded-lg border border-primary-foreground/20">
-              <div className="text-3xl md:text-4xl font-bold text-secondary drop-shadow-lg">24/7</div>
-              <div className="text-sm text-primary-foreground font-medium">Live Tracking</div>
+            <div className="space-y-2 p-4 md:p-6 bg-card/40 backdrop-blur-md rounded-xl border-2 border-secondary/40 shadow-lg hover:shadow-glow transition-all duration-300 hover:scale-105">
+              <div className="text-4xl md:text-5xl font-extrabold bg-gradient-purple bg-clip-text text-transparent drop-shadow-2xl">24/7</div>
+              <div className="text-xs md:text-sm text-primary-foreground font-semibold">Live Tracking</div>
             </div>
           </div>
         </div>

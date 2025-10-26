@@ -23,8 +23,10 @@ const TicketChecker = () => {
   };
 
   return (
-    <section className="py-20 px-4 bg-background">
-      <div className="container mx-auto max-w-5xl">
+    <section className="py-20 px-4 bg-railway-grid relative overflow-hidden">
+      {/* Subtle gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-primary/5 pointer-events-none" />
+      <div className="container mx-auto max-w-5xl relative z-10">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-foreground mb-4">
             Live Ticket Availability
@@ -34,7 +36,7 @@ const TicketChecker = () => {
           </p>
         </div>
 
-        <Card className="p-8 bg-gradient-card shadow-lg border-primary/10">
+        <Card className="p-8 glass-card shadow-xl border-primary/20 hover:shadow-2xl transition-all duration-500">
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid md:grid-cols-2 gap-6">
               {/* Train Number */}

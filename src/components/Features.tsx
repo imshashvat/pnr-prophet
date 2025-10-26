@@ -36,8 +36,10 @@ const features = [
 
 const Features = () => {
   return (
-    <section className="py-20 px-4 bg-background">
-      <div className="container mx-auto max-w-6xl">
+    <section className="py-20 px-4 bg-railway-grid relative overflow-hidden">
+      {/* Subtle mesh gradient */}
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-secondary/5 to-background pointer-events-none" />
+      <div className="container mx-auto max-w-6xl relative z-10">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-foreground mb-4">
             Powerful Features for Smart Travel
@@ -53,10 +55,10 @@ const Features = () => {
             return (
               <Card 
                 key={index}
-                className="p-6 bg-card hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border-primary/10"
+                className="p-6 glass-card hover:shadow-glow transition-all duration-500 hover:-translate-y-2 border-primary/20 group"
               >
-                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
-                  <Icon className="w-6 h-6 text-primary" />
+                <div className="w-12 h-12 rounded-xl bg-gradient-purple flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                  <Icon className="w-6 h-6 text-white" />
                 </div>
                 <h3 className="text-xl font-semibold text-foreground mb-2">
                   {feature.title}

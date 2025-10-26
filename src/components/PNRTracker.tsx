@@ -59,8 +59,10 @@ const PNRTracker = () => {
   };
 
   return (
-    <section className="py-20 px-4 bg-muted/30">
-      <div className="container mx-auto max-w-4xl">
+    <section className="py-20 px-4 bg-connection-dots relative overflow-hidden">
+      {/* Radial gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-radial from-primary/5 via-background to-background pointer-events-none" />
+      <div className="container mx-auto max-w-4xl relative z-10">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-foreground mb-4">
             Track Your PNR Status
@@ -70,7 +72,7 @@ const PNRTracker = () => {
           </p>
         </div>
 
-        <Card className="p-8 bg-gradient-card shadow-lg border-primary/10">
+        <Card className="p-8 glass-card shadow-xl border-primary/20 hover:shadow-2xl transition-all duration-500">
           <form onSubmit={handleTrack} className="space-y-6">
             <div className="space-y-2">
               <Label htmlFor="pnr" className="text-foreground font-medium text-lg">

@@ -23,15 +23,15 @@ All colors MUST be HSL.
     --primary-light: 233 47% 35%;
     --primary-glow: 233 70% 60%;
 
-    /* Modern cyan accent - Tech & Innovation */
-    --secondary: 189 94% 43%;
+    /* Modern purple/violet accent - Tech & Innovation */
+    --secondary: 262 83% 58%;
     --secondary-foreground: 0 0% 100%;
-    --secondary-light: 189 94% 53%;
+    --secondary-light: 262 83% 68%;
 
     --muted: 220 15% 92%;
     --muted-foreground: 230 10% 45%;
 
-    --accent: 189 94% 43%;
+    --accent: 262 83% 58%;
     --accent-foreground: 0 0% 100%;
 
     /* Status colors */
@@ -49,9 +49,10 @@ All colors MUST be HSL.
     --radius: 0.75rem;
 
     /* Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(233 47% 25%), hsl(233 70% 35%));
-    --gradient-hero: linear-gradient(135deg, hsl(233 47% 25%) 0%, hsl(233 60% 30%) 50%, hsl(189 94% 43%) 100%);
+    --gradient-primary: linear-gradient(135deg, hsl(233 47% 25%), hsl(262 83% 58%));
+    --gradient-hero: linear-gradient(135deg, hsl(233 47% 25%) 0%, hsl(233 60% 30%) 50%, hsl(262 83% 58%) 100%);
     --gradient-card: linear-gradient(to bottom right, hsl(0 0% 100%), hsl(220 25% 98%));
+    --gradient-purple: linear-gradient(135deg, hsl(262 83% 58%), hsl(280 70% 65%));
     
     /* Shadows */
     --shadow-sm: 0 2px 8px hsl(233 47% 25% / 0.08);
@@ -78,14 +79,14 @@ All colors MUST be HSL.
     --primary-light: 233 70% 70%;
     --primary-glow: 233 80% 70%;
 
-    --secondary: 189 94% 50%;
+    --secondary: 262 83% 65%;
     --secondary-foreground: 230 20% 10%;
-    --secondary-light: 189 94% 60%;
+    --secondary-light: 262 83% 75%;
 
     --muted: 230 15% 20%;
     --muted-foreground: 220 10% 65%;
 
-    --accent: 189 94% 50%;
+    --accent: 262 83% 65%;
     --accent-foreground: 230 20% 10%;
 
     --success: 142 76% 46%;
@@ -99,9 +100,10 @@ All colors MUST be HSL.
     --input: 230 15% 20%;
     --ring: 233 70% 60%;
 
-    --gradient-primary: linear-gradient(135deg, hsl(233 70% 60%), hsl(233 80% 70%));
-    --gradient-hero: linear-gradient(135deg, hsl(230 20% 10%) 0%, hsl(233 50% 20%) 50%, hsl(189 94% 50%) 100%);
+    --gradient-primary: linear-gradient(135deg, hsl(233 70% 60%), hsl(262 83% 65%));
+    --gradient-hero: linear-gradient(135deg, hsl(230 20% 10%) 0%, hsl(233 50% 20%) 50%, hsl(262 83% 65%) 100%);
     --gradient-card: linear-gradient(to bottom right, hsl(230 18% 14%), hsl(230 18% 16%));
+    --gradient-purple: linear-gradient(135deg, hsl(262 83% 65%), hsl(280 70% 70%));
     
     --shadow-sm: 0 2px 8px hsl(0 0% 0% / 0.3);
     --shadow-md: 0 4px 16px hsl(0 0% 0% / 0.4);
@@ -117,5 +119,39 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  /* Railway Grid Pattern */
+  .bg-railway-grid {
+    background-image: 
+      linear-gradient(to right, hsl(var(--primary) / 0.03) 1px, transparent 1px),
+      linear-gradient(to bottom, hsl(var(--primary) / 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  
+  /* Diagonal Stripes Pattern */
+  .bg-diagonal-stripes {
+    background-image: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 20px,
+      hsl(var(--secondary) / 0.03) 20px,
+      hsl(var(--secondary) / 0.03) 40px
+    );
+  }
+  
+  /* Connection Dots Pattern */
+  .bg-connection-dots {
+    background-image: radial-gradient(circle, hsl(var(--primary) / 0.05) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+  
+  /* Glass Morphism */
+  .glass-card {
+    background: hsl(var(--card) / 0.8);
+    backdrop-filter: blur(12px);
+    border: 1px solid hsl(var(--border) / 0.5);
   }
 }
