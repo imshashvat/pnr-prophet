@@ -1,18 +1,28 @@
 import { Button } from "@/components/ui/button";
 import { Search, TrendingUp, MapPin } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import heroTrain from "@/assets/hero-train.jpg";
 
 const Hero = () => {
+  const navigate = useNavigate();
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
-    <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden pt-16">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <img 
           src={heroTrain} 
           alt="Modern Indian Railway Train" 
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover brightness-50"
         />
-        <div className="absolute inset-0 bg-gradient-hero opacity-90" />
+        <div className="absolute inset-0 bg-gradient-hero opacity-80" />
       </div>
 
       {/* Animated Background Elements */}
@@ -50,6 +60,7 @@ const Hero = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
             <Button 
               size="lg" 
+              onClick={() => scrollToSection("ticket-checker")}
               className="bg-secondary hover:bg-secondary-light text-secondary-foreground px-8 py-6 text-lg font-semibold shadow-lg hover:shadow-glow transition-all"
             >
               <Search className="w-5 h-5 mr-2" />
@@ -57,8 +68,9 @@ const Hero = () => {
             </Button>
             <Button 
               size="lg" 
+              onClick={() => navigate("/track-pnr")}
               variant="outline"
-              className="border-2 border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/10 backdrop-blur-sm px-8 py-6 text-lg font-semibold"
+              className="border-2 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/20 backdrop-blur-sm px-8 py-6 text-lg font-semibold"
             >
               <MapPin className="w-5 h-5 mr-2" />
               Track PNR

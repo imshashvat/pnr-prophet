@@ -1,3 +1,4 @@
+import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import TicketChecker from "@/components/TicketChecker";
 import WaitlistPredictor from "@/components/WaitlistPredictor";
@@ -8,11 +9,18 @@ import Footer from "@/components/Footer";
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
+      <Navbar />
       <Hero />
-      <TicketChecker />
-      <WaitlistPredictor />
+      <div id="ticket-checker">
+        <TicketChecker />
+      </div>
+      <div id="waitlist-predictor">
+        <WaitlistPredictor />
+      </div>
       <PNRTracker />
-      <Features />
+      <div id="features">
+        <Features />
+      </div>
       <Footer />
     </div>
   );
