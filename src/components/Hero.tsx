@@ -72,17 +72,17 @@ const Hero = () => {
 
           {/* Stats */}
           <div className="grid grid-cols-3 gap-8 pt-12 max-w-2xl mx-auto">
-            <div className="space-y-2">
-              <div className="text-3xl md:text-4xl font-bold text-secondary">95%+</div>
-              <div className="text-sm text-primary-foreground/80">Accuracy Rate</div>
+            <div className="space-y-2 p-4 bg-card/20 backdrop-blur-sm rounded-lg border border-primary-foreground/20">
+              <div className="text-3xl md:text-4xl font-bold text-secondary drop-shadow-lg">95%+</div>
+              <div className="text-sm text-primary-foreground font-medium">Accuracy Rate</div>
             </div>
-            <div className="space-y-2">
-              <div className="text-3xl md:text-4xl font-bold text-secondary">2M+</div>
-              <div className="text-sm text-primary-foreground/80">Predictions Made</div>
+            <div className="space-y-2 p-4 bg-card/20 backdrop-blur-sm rounded-lg border border-primary-foreground/20">
+              <div className="text-3xl md:text-4xl font-bold text-secondary drop-shadow-lg">2M+</div>
+              <div className="text-sm text-primary-foreground font-medium">Predictions Made</div>
             </div>
-            <div className="space-y-2">
-              <div className="text-3xl md:text-4xl font-bold text-secondary">24/7</div>
-              <div className="text-sm text-primary-foreground/80">Live Tracking</div>
+            <div className="space-y-2 p-4 bg-card/20 backdrop-blur-sm rounded-lg border border-primary-foreground/20">
+              <div className="text-3xl md:text-4xl font-bold text-secondary drop-shadow-lg">24/7</div>
+              <div className="text-sm text-primary-foreground font-medium">Live Tracking</div>
             </div>
           </div>
         </div>
