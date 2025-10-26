@@ -17,7 +17,9 @@ const Index = () => {
       <div id="waitlist-predictor">
         <WaitlistPredictor />
       </div>
-      <PNRTracker />
+      <div id="pnr-tracker">
+        <PNRTracker />
+      </div>
       <div id="features">
         <Features />
       </div>

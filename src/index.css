@@ -23,15 +23,15 @@ All colors MUST be HSL.
     --primary-light: 233 47% 35%;
     --primary-glow: 233 70% 60%;
 
-    /* Vibrant orange accent - Indian Railways energy */
-    --secondary: 25 95% 53%;
+    /* Modern cyan accent - Tech & Innovation */
+    --secondary: 189 94% 43%;
     --secondary-foreground: 0 0% 100%;
-    --secondary-light: 25 95% 63%;
+    --secondary-light: 189 94% 53%;
 
     --muted: 220 15% 92%;
     --muted-foreground: 230 10% 45%;
 
-    --accent: 25 95% 53%;
+    --accent: 189 94% 43%;
     --accent-foreground: 0 0% 100%;
 
     /* Status colors */
@@ -50,7 +50,7 @@ All colors MUST be HSL.
 
     /* Gradients */
     --gradient-primary: linear-gradient(135deg, hsl(233 47% 25%), hsl(233 70% 35%));
-    --gradient-hero: linear-gradient(135deg, hsl(233 47% 25%) 0%, hsl(233 60% 30%) 50%, hsl(25 95% 53%) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(233 47% 25%) 0%, hsl(233 60% 30%) 50%, hsl(189 94% 43%) 100%);
     --gradient-card: linear-gradient(to bottom right, hsl(0 0% 100%), hsl(220 25% 98%));
     
     /* Shadows */
@@ -78,14 +78,14 @@ All colors MUST be HSL.
     --primary-light: 233 70% 70%;
     --primary-glow: 233 80% 70%;
 
-    --secondary: 25 95% 58%;
+    --secondary: 189 94% 50%;
     --secondary-foreground: 230 20% 10%;
-    --secondary-light: 25 95% 68%;
+    --secondary-light: 189 94% 60%;
 
     --muted: 230 15% 20%;
     --muted-foreground: 220 10% 65%;
 
-    --accent: 25 95% 58%;
+    --accent: 189 94% 50%;
     --accent-foreground: 230 20% 10%;
 
     --success: 142 76% 46%;
@@ -100,7 +100,7 @@ All colors MUST be HSL.
     --ring: 233 70% 60%;
 
     --gradient-primary: linear-gradient(135deg, hsl(233 70% 60%), hsl(233 80% 70%));
-    --gradient-hero: linear-gradient(135deg, hsl(230 20% 10%) 0%, hsl(233 50% 20%) 50%, hsl(25 95% 58%) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(230 20% 10%) 0%, hsl(233 50% 20%) 50%, hsl(189 94% 50%) 100%);
     --gradient-card: linear-gradient(to bottom right, hsl(230 18% 14%), hsl(230 18% 16%));
     
     --shadow-sm: 0 2px 8px hsl(0 0% 0% / 0.3);
