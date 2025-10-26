@@ -25,12 +25,6 @@ const Hero = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/70 to-transparent" />
       </div>
 
-      {/* Animated Background Elements */}
-      <div className="absolute inset-0 z-0">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-primary-glow rounded-full blur-3xl opacity-20 animate-pulse" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-secondary rounded-full blur-3xl opacity-15 animate-pulse delay-1000" />
-      </div>
-
       {/* Content */}
       <div className="container relative z-10 px-4 mx-auto text-center">
         <div className="max-w-4xl mx-auto space-y-8">
