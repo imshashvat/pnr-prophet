@@ -10,14 +10,21 @@ class RailAPIService:
     """
 
     def __init__(self):
-        self.api_key = os.environ.get('RAIL_API_KEY', '')
-        self.api_host = os.environ.get('RAIL_API_HOST', '')
+    self.api_key = os.environ.get('RAIL_API_KEY', '')
+    self.api_host = os.environ.get('RAIL_API_HOST', '')
+    # Optional override for header names and endpoint paths
+    self.key_header = os.environ.get('RAIL_API_KEY_HEADER_NAME', 'X-RapidAPI-Key')
+    self.host_header = os.environ.get('RAIL_API_HOST_HEADER_NAME', 'X-RapidAPI-Host')
+    self.availability_path = os.environ.get('RAIL_AVAILABILITY_PATH', '/availability')
+    self.pnr_path = os.environ.get('RAIL_PNR_PATH', '/pnr-status')
 
     def _headers(self):
-        return {
-            "X-RapidAPI-Key": self.api_key,
-            "X-RapidAPI-Host": self.api_host,
-        }
+        headers = {}
+        if self.api_key:
+            headers[self.key_header] = self.api_key
+        if self.api_host:
+            headers[self.host_header] = self.api_host
+        return headers
 
     def _can_call(self) -> bool:
         return bool(self.api_key and self.api_host)
@@ -25,8 +32,9 @@ class RailAPIService:
     def get_availability(self, train_no: str, date: str, clazz: str) -> Dict[str, Any]:
         if self._can_call():
             try:
-                # Example endpoint path; replace with actual provider path
-                url = f"https://{self.api_host}/availability"
+                # Build full URL using configured path
+                base = f"https://{self.api_host}" if not self.api_host.startswith('http') else self.api_host
+                url = f"{base}{self.availability_path}"
                 params = {"train_no": train_no, "date": date, "class": clazz}
                 r = requests.get(url, headers=self._headers(), params=params, timeout=15)
                 r.raise_for_status()
@@ -48,7 +56,8 @@ class RailAPIService:
     def get_pnr(self, pnr_no: str) -> Dict[str, Any]:
         if self._can_call():
             try:
-                url = f"https://{self.api_host}/pnr-status"
+                base = f"https://{self.api_host}" if not self.api_host.startswith('http') else self.api_host
+                url = f"{base}{self.pnr_path}"
                 params = {"pnr": pnr_no}
                 r = requests.get(url, headers=self._headers(), params=params, timeout=15)
                 r.raise_for_status()
