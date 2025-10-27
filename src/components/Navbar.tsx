@@ -49,6 +49,24 @@ const Navbar = () => {
               Track PNR
             </button>
             <button
+              onClick={() => navigate("/route-map")}
+              className="text-foreground hover:text-primary transition-colors font-medium"
+            >
+              Route Map
+            </button>
+            <button
+              onClick={() => navigate("/dashboard")}
+              className="text-foreground hover:text-primary transition-colors font-medium"
+            >
+              Dashboard
+            </button>
+            <button
+              onClick={() => navigate("/chat")}
+              className="text-foreground hover:text-primary transition-colors font-medium"
+            >
+              Chat
+            </button>
+            <button
               onClick={() => navigate("/about")}
               className="text-foreground hover:text-primary transition-colors font-medium"
             >
@@ -97,6 +115,24 @@ const Navbar = () => {
               className="block w-full text-left px-4 py-2 text-foreground hover:bg-muted rounded-md transition-colors"
             >
               Track PNR
+            </button>
+            <button
+              onClick={() => { navigate("/route-map"); setIsOpen(false); }}
+              className="block w-full text-left px-4 py-2 text-foreground hover:bg-muted rounded-md transition-colors"
+            >
+              Route Map
+            </button>
+            <button
+              onClick={() => { navigate("/dashboard"); setIsOpen(false); }}
+              className="block w-full text-left px-4 py-2 text-foreground hover:bg-muted rounded-md transition-colors"
+            >
+              Dashboard
+            </button>
+            <button
+              onClick={() => { navigate("/chat"); setIsOpen(false); }}
+              className="block w-full text-left px-4 py-2 text-foreground hover:bg-muted rounded-md transition-colors"
+            >
+              Chat
             </button>
             <button
               onClick={() => { navigate("/about"); setIsOpen(false); }}

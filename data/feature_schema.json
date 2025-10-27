@@ -1,0 +1,12 @@
+{
+  "features": [
+    { "name": "train_no", "type": "string" },
+    { "name": "clazz", "type": "string" },
+    { "name": "wl_position", "type": "number" },
+    { "name": "booking_date", "type": "date" },
+    { "name": "day_of_week", "type": "number" },
+    { "name": "season", "type": "string" },
+    { "name": "distance", "type": "number" },
+    { "name": "train_type", "type": "string" }
+  ]
+}

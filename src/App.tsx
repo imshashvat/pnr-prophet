@@ -8,6 +8,9 @@ import NotFound from "./pages/NotFound";
 import TrackPNR from "./pages/TrackPNR";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import Dashboard from "./pages/Dashboard";
+import RouteMap from "./pages/RouteMap";
+import ChatBot from "./pages/ChatBot";
 
 const queryClient = new QueryClient();
 
@@ -20,6 +23,9 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/track-pnr" element={<TrackPNR />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/route-map" element={<RouteMap />} />
+          <Route path="/chat" element={<ChatBot />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Api, type PnrResponse } from '@/lib/api';
 import { useNavigate } from 'react-router-dom';
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -11,7 +12,7 @@ import Navbar from "@/components/Navbar";
 const TrackPNR = () => {
   const navigate = useNavigate();
   const [pnr, setPnr] = useState('');
-  const [status, setStatus] = useState<any>(null);
+  const [status, setStatus] = useState<PnrResponse | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
@@ -28,32 +29,38 @@ const TrackPNR = () => {
     setLoading(true);
     setError('');
     setStatus(null);
-    
-    // TODO: Replace with real API call
-    setTimeout(() => {
-      setStatus({
-        pnr,
-        currentStatus: 'WL 10',
-        history: [
-          { status: 'WL 15', time: '2025-10-25 10:00' },
-          { status: 'WL 12', time: '2025-10-25 18:00' },
-          { status: 'WL 10', time: '2025-10-26 09:00' },
-        ],
-        coach: 'S2',
-        berth: '45',
-        eta: '2h 30m',
-      });
+    try {
+      const data = await Api.pnr(pnr);
+      setStatus(data);
+      toast.success("PNR Status Retrieved", { description: "Your ticket status has been updated" });
+    } catch (e: any) {
+      setError('Failed to fetch PNR details');
+    } finally {
       setLoading(false);
-      toast.success("PNR Status Retrieved", {
-        description: "Your ticket status has been updated"
-      });
-    }, 1200);
+    }
   };
 
-  const handleEnableNotifications = () => {
-    toast.success("Notifications Enabled", {
-      description: "You'll receive updates when your PNR status changes"
-    });
+  const handleEnableNotifications = async () => {
+    const recipient = window.prompt('Enter your email or phone for alerts');
+    if (!recipient) return;
+    try {
+      const channel = recipient.includes('@') ? 'email' : 'sms';
+      await Api.notify({
+        channel,
+        recipient,
+        message: `Subscribe PNR ${pnr}`,
+        // extra fields for subscription creation
+        // @ts-ignore - backend will accept these extra fields
+        subscribe: true,
+        // @ts-ignore
+        pnr,
+        // Optional threshold example (comment out if not needed)
+        // threshold: 0.8,
+      } as any);
+      toast.success('Notifications Enabled', { description: 'You will be notified on updates.' });
+    } catch (e) {
+      toast.error('Failed to enable notifications');
+    }
   };
 
   return (
@@ -124,7 +131,7 @@ const TrackPNR = () => {
                 <div className="p-6 bg-card border border-border rounded-lg shadow-sm">
                   <div className="flex justify-between items-center mb-4">
                     <span className="text-foreground font-semibold">Current Status:</span>
-                    <span className="text-2xl font-bold text-secondary">{status.currentStatus}</span>
+                    <span className="text-2xl font-bold text-secondary">{status.current_status}</span>
                   </div>
                   
                   <div className="grid grid-cols-2 gap-4 mb-4">
@@ -138,8 +145,8 @@ const TrackPNR = () => {
                     <div className="flex items-center gap-2">
                       <Clock className="w-4 h-4 text-primary" />
                       <div>
-                        <p className="text-sm text-muted-foreground">ETA</p>
-                        <p className="font-semibold text-foreground">{status.eta}</p>
+                        <p className="text-sm text-muted-foreground">Last Update</p>
+                        <p className="font-semibold text-foreground">{status.history?.[status.history.length-1]?.time}</p>
                       </div>
                     </div>
                   </div>
@@ -151,7 +158,7 @@ const TrackPNR = () => {
                     Status History
                   </h3>
                   <ul className="space-y-2">
-                    {status.history.map((h: any, i: number) => (
+                    {status.history.map((h, i) => (
                       <li key={i} className="flex justify-between items-center py-2 border-b border-border last:border-0">
                         <span className="text-foreground font-medium">{h.status}</span>
                         <span className="text-sm text-muted-foreground">{h.time}</span>

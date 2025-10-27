@@ -1,0 +1,17 @@
+flask
+flask-cors
+dotenv
+requests
+joblib
+scikit-learn
+shap
+flask-sqlalchemy
+pytest
+twilio
+pandas
+numpy
+lightgbm
+xgboost
+mlflow
+evidently
+matplotlib
