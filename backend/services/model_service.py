@@ -20,11 +20,24 @@ class ModelService:
             print('Model load error:', e)
 
     def predict(self, features: Dict) -> Tuple[float, List[str]]:
-        # Minimal mock until real model provided
+        """Heuristic placeholder using new features until real model is trained.
+        Considers wl_position, quota_weight, route_busy_index, and days_to_departure.
+        """
         wl = int(str(features.get('wl_position', 50)))
-        base = max(0.05, min(0.95, 1.0 - wl / 100.0))
-        prob = round(base, 2)
-        top_factors = ['wl_position', 'day_of_week', 'clazz']
+        qwt = float(features.get('quota_weight', 0.8))
+        rbi = float(features.get('route_busy_index', 1.0))
+        lead = int(str(features.get('days_to_departure', 15)))
+        fest = int(str(features.get('festival_flag', 0)))
+
+        # Base from WL
+        base = 1.0 - min(0.95, wl / 100.0)
+        # Quota and route modifiers
+        mod = 0.15 * (qwt - 0.8) + 0.1 * (1.2 - min(1.2, rbi)) + 0.1 * (lead / 30.0)
+        # Festival penalty
+        penalty = 0.1 if fest else 0.0
+        prob = max(0.01, min(0.99, base + mod - penalty))
+        prob = round(prob, 2)
+        top_factors = ['wl_position', 'quota_type', 'route_busy_index', 'days_to_departure']
         return prob, top_factors
 
     def explain(self, features: Dict[str, Any]) -> Dict[str, Any]:
@@ -35,8 +48,8 @@ class ModelService:
         wl = int(str(features.get('wl_position', 50)))
         contributions = [
             {'feature': 'wl_position', 'value': wl, 'shap': round((50 - wl) / 100.0, 3)},
-            {'feature': 'day_of_week', 'value': features.get('day_of_week'), 'shap': 0.05},
-            {'feature': 'clazz', 'value': features.get('clazz'), 'shap': 0.03},
+            {'feature': 'quota_weight', 'value': features.get('quota_weight'), 'shap': 0.06},
+            {'feature': 'route_busy_index', 'value': features.get('route_busy_index'), 'shap': 0.04},
         ]
         prob, _ = self.predict(features)
         return {

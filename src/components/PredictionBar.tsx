@@ -2,7 +2,7 @@ import React from 'react';
 
 const colors = [
   { max: 0.4, bg: 'bg-red-600' },
-  { max: 0.7, bg: 'bg-yellow-500' },
+  { max: 0.8, bg: 'bg-yellow-500' },
   { max: 1.0, bg: 'bg-green-600' },
 ];
 

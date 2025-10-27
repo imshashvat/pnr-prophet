@@ -13,8 +13,15 @@ export default function ChatBot() {
     try {
       // naive parse for demo
       const wl = 18;
+      const today = new Date().toISOString().slice(0, 10);
       const res = await Api.predict({
-        train_no: '12345', wl_position: wl, day_of_week: 3, distance: 300, status: 'WL18', clazz: 'SL'
+        train_no: '12345',
+        source: 'NDLS',
+        destination: 'BCT',
+        date: today,
+        clazz: 'SL',
+        quota_type: 'GNWL',
+        wl_position: wl,
       });
       setProb(res.confirmation_chance);
       setAnswer(`Estimated confirmation chance is ${(res.confirmation_chance*100).toFixed(0)}%. Top factors: ${res.top_factors.join(', ')}.`);

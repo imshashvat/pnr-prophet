@@ -17,11 +17,12 @@ def test_predict_missing():
 def test_predict_ok():
     res = client.post('/predict', json={
         'train_no': '12345',
+        'source': 'NDLS',
+        'destination': 'BCT',
+        'date': '2025-12-15',
+        'clazz': 'SL',
+        'quota_type': 'GNWL',
         'wl_position': 12,
-        'day_of_week': 3,
-        'distance': 300,
-        'status': 'WL10',
-        'clazz': 'SL'
     })
     assert res.status_code == 200
     data = json.loads(res.data)

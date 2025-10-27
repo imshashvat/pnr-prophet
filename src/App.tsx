@@ -10,7 +10,8 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Dashboard from "./pages/Dashboard";
 import RouteMap from "./pages/RouteMap";
-import ChatBot from "./pages/ChatBot";
+import ChatBot from "@/pages/ChatBot";
+import Predict from "@/pages/PredictRHF";
 
 const queryClient = new QueryClient();
 
@@ -25,6 +26,7 @@ const App = () => (
           <Route path="/track-pnr" element={<TrackPNR />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/route-map" element={<RouteMap />} />
+          <Route path="/predict" element={<Predict />} />
           <Route path="/chat" element={<ChatBot />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />

@@ -26,3 +26,16 @@ class PredictionLog(db.Model):
     wl_position = db.Column(db.Integer)
     probability = db.Column(db.Float)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+
+class OutcomeLog(db.Model):
+    __tablename__ = 'outcome_logs'
+
+    id = db.Column(db.Integer, primary_key=True)
+    train_no = db.Column(db.String(16), index=True)
+    clazz = db.Column(db.String(8), index=True)
+    pnr = db.Column(db.String(16), index=True, nullable=True)
+    confirmed = db.Column(db.Integer)  # 1 confirmed, 0 not confirmed
+    predicted_prob = db.Column(db.Float, nullable=True)
+    journey_date = db.Column(db.Date, nullable=True)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)

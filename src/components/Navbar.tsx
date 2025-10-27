@@ -55,6 +55,12 @@ const Navbar = () => {
               Route Map
             </button>
             <button
+              onClick={() => navigate("/predict")}
+              className="text-foreground hover:text-primary transition-colors font-medium"
+            >
+              Predict
+            </button>
+            <button
               onClick={() => navigate("/dashboard")}
               className="text-foreground hover:text-primary transition-colors font-medium"
             >
@@ -121,6 +127,12 @@ const Navbar = () => {
               className="block w-full text-left px-4 py-2 text-foreground hover:bg-muted rounded-md transition-colors"
             >
               Route Map
+            </button>
+            <button
+              onClick={() => { navigate("/predict"); setIsOpen(false); }}
+              className="block w-full text-left px-4 py-2 text-foreground hover:bg-muted rounded-md transition-colors"
+            >
+              Predict
             </button>
             <button
               onClick={() => { navigate("/dashboard"); setIsOpen(false); }}

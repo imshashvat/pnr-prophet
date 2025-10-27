@@ -9,19 +9,32 @@ trends_bp = Blueprint('trends', __name__)
 def get_trends():
     train_no = request.args.get('train_no')
     clazz = request.args.get('clazz')
-    # Placeholder aggregation; replace with DB query results
-    return jsonify({
+    month = request.args.get('month')  # optional focus month
+    # Placeholder aggregation; replace with DB query results and historical logs
+    data = {
         'train_no': train_no,
         'clazz': clazz,
-        'weekly_rates': [
-            {'week': 'W1', 'rate': 0.52},
-            {'week': 'W2', 'rate': 0.56},
-            {'week': 'W3', 'rate': 0.61},
-            {'week': 'W4', 'rate': 0.58},
+        'monthly': [
+            {'month': 'Jan', 'avg_prob': 0.55},
+            {'month': 'Feb', 'avg_prob': 0.58},
+            {'month': 'Mar', 'avg_prob': 0.6},
+            {'month': 'Apr', 'avg_prob': 0.57},
+            {'month': 'May', 'avg_prob': 0.53},
+            {'month': 'Jun', 'avg_prob': 0.5},
+            {'month': 'Jul', 'avg_prob': 0.48},
+            {'month': 'Aug', 'avg_prob': 0.51},
+            {'month': 'Sep', 'avg_prob': 0.54},
+            {'month': 'Oct', 'avg_prob': 0.45},
+            {'month': 'Nov', 'avg_prob': 0.47},
+            {'month': 'Dec', 'avg_prob': 0.6},
         ],
-        'seasonal': [
-            {'month': 'Oct', 'rate': 0.63},
-            {'month': 'Nov', 'rate': 0.59},
-            {'month': 'Dec', 'rate': 0.71},
+        'wl_vs_prob': [
+            {'wl': 5, 'prob': 0.88},
+            {'wl': 10, 'prob': 0.8},
+            {'wl': 20, 'prob': 0.65},
+            {'wl': 30, 'prob': 0.5},
+            {'wl': 40, 'prob': 0.38},
+            {'wl': 60, 'prob': 0.22},
         ]
-    })
+    }
+    return jsonify(data)

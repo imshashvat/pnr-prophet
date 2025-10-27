@@ -1,6 +1,10 @@
 import os
 import requests
-from typing import Dict, Any
+from typing import Dict, Any, Tuple
+from time import time
+
+
+_CACHE: Dict[Tuple[str, str], Tuple[float, Dict[str, Any]]] = {}
 
 
 class RailAPIService:
@@ -10,13 +14,14 @@ class RailAPIService:
     """
 
     def __init__(self):
-    self.api_key = os.environ.get('RAIL_API_KEY', '')
-    self.api_host = os.environ.get('RAIL_API_HOST', '')
-    # Optional override for header names and endpoint paths
-    self.key_header = os.environ.get('RAIL_API_KEY_HEADER_NAME', 'X-RapidAPI-Key')
-    self.host_header = os.environ.get('RAIL_API_HOST_HEADER_NAME', 'X-RapidAPI-Host')
-    self.availability_path = os.environ.get('RAIL_AVAILABILITY_PATH', '/availability')
-    self.pnr_path = os.environ.get('RAIL_PNR_PATH', '/pnr-status')
+        self.api_key = os.environ.get('RAIL_API_KEY', '')
+        self.api_host = os.environ.get('RAIL_API_HOST', '')
+        # Optional override for header names and endpoint paths
+        self.key_header = os.environ.get('RAIL_API_KEY_HEADER_NAME', 'X-RapidAPI-Key')
+        self.host_header = os.environ.get('RAIL_API_HOST_HEADER_NAME', 'X-RapidAPI-Host')
+        self.availability_path = os.environ.get('RAIL_AVAILABILITY_PATH', '/availability')
+        self.pnr_path = os.environ.get('RAIL_PNR_PATH', '/pnr-status')
+        self.cache_ttl = int(os.environ.get('RAIL_CACHE_TTL', '120'))
 
     def _headers(self):
         headers = {}
@@ -30,6 +35,13 @@ class RailAPIService:
         return bool(self.api_key and self.api_host)
 
     def get_availability(self, train_no: str, date: str, clazz: str) -> Dict[str, Any]:
+        # Cache key
+        ck = ("avail", f"{train_no}-{date}-{clazz}")
+        now = time()
+        if ck in _CACHE:
+            ts, val = _CACHE[ck]
+            if now - ts < self.cache_ttl:
+                return val
         if self._can_call():
             try:
                 # Build full URL using configured path
@@ -39,6 +51,7 @@ class RailAPIService:
                 r = requests.get(url, headers=self._headers(), params=params, timeout=15)
                 r.raise_for_status()
                 data = r.json()
+                _CACHE[ck] = (now, data)
                 return data
             except Exception as e:
                 print("[RailAPIService] availability error:", e)
@@ -54,6 +67,12 @@ class RailAPIService:
         }
 
     def get_pnr(self, pnr_no: str) -> Dict[str, Any]:
+        ck = ("pnr", pnr_no)
+        now = time()
+        if ck in _CACHE:
+            ts, val = _CACHE[ck]
+            if now - ts < self.cache_ttl:
+                return val
         if self._can_call():
             try:
                 base = f"https://{self.api_host}" if not self.api_host.startswith('http') else self.api_host
@@ -61,7 +80,9 @@ class RailAPIService:
                 params = {"pnr": pnr_no}
                 r = requests.get(url, headers=self._headers(), params=params, timeout=15)
                 r.raise_for_status()
-                return r.json()
+                data = r.json()
+                _CACHE[ck] = (now, data)
+                return data
             except Exception as e:
                 print("[RailAPIService] pnr error:", e)
         # Fallback mock structure aligned to frontend types
